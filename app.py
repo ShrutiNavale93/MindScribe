@@ -1,14 +1,32 @@
 from flask import Flask, render_template, request, redirect, session
 import sqlite3
-import pickle
+
 from datetime import datetime
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+
+# Simple training data
+texts = [
+    "I feel very happy today",
+    "I am sad and lonely",
+    "I am feeling anxious",
+    "I am very angry",
+    "I feel calm and okay"
+]
+
+labels = ["happy", "sad", "anxious", "angry", "neutral"]
+
+vectorizer = TfidfVectorizer()
+X = vectorizer.fit_transform(texts)
+
+model = LogisticRegression()
+model.fit(X, labels)
+
 
 app = Flask(__name__)
 app.secret_key = "mindscribe_secret_key"
 
 
-model = pickle.load(open("emotion_model.pkl", "rb"))
-vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
 
 def get_db():
     return sqlite3.connect("journal.db")
