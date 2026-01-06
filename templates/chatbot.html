@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MindScribe – Chatbot</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>🤖 Emotional Support Chatbot</h1>
+    <p class="subtitle">I'm here to listen and support you</p>
+
+    <form method="post">
+        <input type="text" name="message" placeholder="Type what you're feeling..." required>
+        <button type="submit">Send</button>
+    </form>
+
+    {% if response %}
+    <div class="response">
+        {{ response }}
+    </div>
+    {% endif %}
+
+    <div class="nav">
+        <a href="/">← Back to Journal</a>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MindScribe – Journal</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>🧠 MindScribe</h1>
+    <p class="subtitle">A safe space to write, reflect, and understand your emotions</p>
+
+    <form method="post">
+        <textarea name="journal" placeholder="Write how you are feeling today..." required></textarea>
+        <button type="submit">Analyze Emotion</button>
+    </form>
+
+   {% if emotion %}
+<div class="result {{ emotion }}">
+    {% if emotion == 'happy' %} 😊
+    {% elif emotion == 'sad' %} 😔
+    {% elif emotion == 'angry' %} 😠
+    {% elif emotion == 'anxious' %} 😟
+    {% else %} 😐
+    {% endif %}
+    Detected Emotion: <strong>{{ emotion }}</strong>
+</div>
+{% endif %}
+
+    <div class="nav">
+        <a href="/chatbot">🤖 Support Chatbot</a>
+        <a href="/dashboard">📊 Mood Dashboard</a>
+        <a href="/logout">🚪 Logout</a>
+
+    </div>
+
+    <p class="disclaimer">
+        ⚠ MindScribe is a self-reflection tool and does not provide medical advice.
+    </p>
+</div>
+
+</body>
+</html>

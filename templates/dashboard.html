@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MindScribe – Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>📊 Mood Analytics</h1>
+    <p class="subtitle">Visual overview of emotional trends</p>
+
+    <canvas id="moodChart"></canvas>
+
+    <table>
+        <tr>
+            <th>Emotion</th>
+            <th>Frequency</th>
+        </tr>
+        {% for row in data %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="nav">
+        <a href="/">← Back to Journal</a>
+    </div>
+</div>
+
+<script>
+const labels = [{% for row in data %}"{{ row[0] }}",{% endfor %}];
+const values = [{% for row in data %}{{ row[1] }},{% endfor %}];
+
+new Chart(document.getElementById("moodChart"), {
+    type: "bar",
+    data: {
+        labels: labels,
+        datasets: [{
+            label: "Emotion Frequency",
+            data: values
+        }]
+    }
+});
+</script>
+
+</body>
+</html>

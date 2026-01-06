@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+journal.db
+emotion_model.pkl
+vectorizer.pkl
+.env
